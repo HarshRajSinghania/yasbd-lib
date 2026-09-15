@@ -10,8 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - **Cyrillic page and apartment abbreviations** ([#308](https://github.com/speedyk-005/yasbd-lib/pull/308)): Added `стор` and `кв` to Russian `REFERENCE_ABBRVS` (inherited by Ukrainian) so `стор. 12` and `кв. 45` no longer split sentences.
+- **German and Dutch unit/reference abbreviations** ([#301](https://github.com/speedyk-005/yasbd-lib/issues/301)): Added `Mio` and `Mrd` to German `INLINE_ONLY_ABBRVS`, and Dutch `mln`, `m.b.t`, `zgn` to `INLINE_ONLY_ABBRVS` and `d.d` to `REFERENCE_ABBRVS` to prevent false sentence splits.
 - **Burmese double-comma boundaries** ([#286](https://github.com/speedyk-005/yasbd-lib/pull/286)): Recognize `၊` as a sentence-ending punctuation mark while preserving single-comma continuations.
 - **Swahili address and currency abbreviations** ([#310](https://github.com/speedyk-005/yasbd-lib/pull/310)): Added `na` and `tsh` to Swahili `REFERENCE_ABBRVS` so `Na.` (Namba) and `Tsh.` (Tanzanian shilling) do not trigger false sentence splits before numbers and currency amounts.
+- **Persian and Arabic hierarchical section numbers** ([#315](https://github.com/speedyk-005/yasbd-lib/pull/315)): Prevent splits after hierarchical numbers like `1٫2.` via mid-sentence regex.
+- **Malayalam title abbreviation and section markers** ([#327](https://github.com/speedyk-005/yasbd-lib/pull/327)): Added the `പ്രൊഫ` (professor) title abbreviation and a `SECTION_MARKERS` set (`അധ്യായം`, `വിഭാഗം`, etc.) so Malayalam headings like `വിഭാഗം 2.1.` stay whole.
+- **Indonesian `pk.`, `tgl.`, `PT.`, `CV.` abbreviations** ([#326](https://github.com/speedyk-005/yasbd-lib/pull/326)): Added `pk` and `tgl` to Indonesian reference abbreviations (always followed by time/date) and `pt`/`cv` to corporate entity abbreviations (always followed by a company name), so these no longer split sentences.
+
+### Changed
+
+- **Remove loguru dependency** ([#317](https://github.com/speedyk-005/yasbd-lib/pull/317)): Replace loguru with a custom stdlib logger in `utils/logger.py`.
+- **Drop `ftfy` from the cleaner** ([#325](https://github.com/speedyk-005/yasbd-lib/pull/325)): Replace `ftfy.fix_text` with a lightweight `_clean_mojibake` step (cp1252/latin-1 misreads, HTML entity unescaping, non-breaking-space normalization), speeding up `StreamCleaner` while keeping the same defaults.
 
 ---
 
