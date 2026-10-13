@@ -50,6 +50,8 @@ class BnRules(Rules):
     }
 
     INLINE_ONLY_ABBRVS = Rules.INLINE_ONLY_ABBRVS | {
+        # Era markers (AD/BC) — see #396
+        "খ্রি", "খ্রি.পূ", "খ্রিপূ",
         "উদা", "দ্র", "তুল", "টী", "বনাম", "লি", "কো",
         "কোম্পানি", "ভা", "চৌ", "জি",
     }
@@ -96,5 +98,5 @@ class BnRules(Rules):
             re.compile(r"\.(?!\s)"),
 
             # Geopolitical abbreviations
-            re.compile(rf"(?<={cls.DOTTED_GEOPOL_ABBRVS_PATTERN})\.")
+            re.compile(rf"(?<={cls.DOTTED_GEOPOL_ABBRVS_PATTERN})\." )
         ])
