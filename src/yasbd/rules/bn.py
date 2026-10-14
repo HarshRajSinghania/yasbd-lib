@@ -50,10 +50,9 @@ class BnRules(Rules):
     }
 
     INLINE_ONLY_ABBRVS = Rules.INLINE_ONLY_ABBRVS | {
-        # Era markers (AD/BC) — see #396
-        "খ্রি", "খ্রি.পূ", "খ্রিপূ",
         "উদা", "দ্র", "তুল", "টী", "বনাম", "লি", "কো",
         "কোম্পানি", "ভা", "চৌ", "জি",
+        "খ্রি", "খ্রি.পূ", "খ্রিপূ",
     }
 
     COMMON_SENT_STARTERS = {
